@@ -11,16 +11,13 @@ class Games:
 
 
 class Team:
-    def __init__(self, name, data, score):
+    def __init__(self, name, data, SD):
         self.name = name
         self.data = data
-        self.score = score
+        self.ScoreDif = SD
 
     def GetData(self, i):
         return self.data[i]
-
-    def GetName(self):
-        return self.name
 
 
 class Roster:

@@ -12,6 +12,7 @@ class GameProfile:
         self.w = addArray
 
         self.slr = 0.  # FINAL RESULT YEEEAAAA
+        self.Score = 0.
 
         self.teams = teams
 
