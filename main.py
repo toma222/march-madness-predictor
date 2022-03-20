@@ -1,5 +1,7 @@
 
+import os
 from random import random
+import sys
 from time import sleep
 
 from MakeArrayIterations import Enum
@@ -47,29 +49,64 @@ if __name__ == '__main__':
     Gen = 0
     WinningWeights = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
 
+    BestEval = 0.
+
     while Fitness < .98:
 
         Keep = 0
         Test = 0
 
+        PrevEval = 100
+
         AiKeepers = []
+
+        HailMaryAi = None
+        HailMaryList = []
+        TopCorrect = 0
+
+        BestWeight = []
 
         for i in En.Combos:
             # parse the string to an array of numbers and send it into a half baked AI
             w = i.split('#')
 
             GamesEvaled = 0
+            Test += 1
             Correct = 0
 
-            Test += 1
-
             for Game in Rost.Games:
+
                 AI = GameProfile(teams=Game.teams, weights=WinningWeights,
                                  AddWeights=w)
 
                 outcome = AI.SolveFirstLayer()
 
                 if outcome == WINNING_SCORE:
+
+                    if HailMaryAi != None:
+                        if Correct > TopCorrect:
+                            TopCorrect = Correct
+                            HailMaryAi = AI
+                            HailMaryList.clear()
+                            HailMaryList.append(AI)
+                            print(
+                                f'New hail mary AI top score of {TopCorrect}')
+                        elif Correct == TopCorrect:
+
+                            addit = 0.
+
+                            for weight in w:
+                                if weight != '':
+                                    addit += int(float(weight))
+
+                            if abs(addit) < 10:
+                                HailMaryList.append(AI)
+
+                            # HailMaryList.append(AI)
+                    else:
+                        TopCorrect = Correct
+                        HailMaryAi = AI
+
                     Correct += 1
 
             if Correct == 5:
@@ -77,7 +114,13 @@ if __name__ == '__main__':
 
                 # Check score diffrance
 
-                AiKeepers.append(AI)
+                addit = 0.
+
+                for weight in AI.w:
+                    addit += weight
+
+                if abs(addit) < 10:
+                    AiKeepers.append(AI)
 
         Fitness = Keep / Test
         Gen += 1
@@ -87,7 +130,19 @@ if __name__ == '__main__':
 
         # go over all ai models and see witch one is closest to zer
 
-        keep = AiKeepers[round(random() * len(AiKeepers))]
+        if TopCorrect == 5:
+            keep = AiKeepers[round(random() * len(AiKeepers))]
+        else:
+            if len(HailMaryList) != 1:
+                keep = HailMaryList[round(random() * len(HailMaryList))]
+            else:
+                keep = HailMaryAi
+
+        if Fitness > BestEval:
+            BestEval = Fitness
+            BestWeight = keep.w
+
+        PrevEval = Fitness
 
         # TODO We need to calculate for sure what the ending weight should be
 
@@ -97,6 +152,9 @@ if __name__ == '__main__':
         print(f'Generation {Gen} Finished with {Fitness} Accuracy')
         print(f'Generation finished with {WinningWeights} As Weights')
         print(f'{len(AiKeepers)} have passed')
+        print('-' * 50)
+        print(f'Best weights of {BestWeight}')
+        print(f'Best fitnesss of {BestEval}')
         print('-' * 50)
         sleep(5)
     # UAB blazers lost

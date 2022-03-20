@@ -17,13 +17,18 @@ class GameProfile:
 
     def SolveFirstLayer(self):
 
-        # new Ai model
-        # go over every value in the teams and have the ai decide a negitive or a positive value to find the winning team
+        # TODO take score of both teams and subtract them
 
         Score = 0.
-        for t in self.teams:
-            for i in range(len(self.w)):
-                Score += (t.GetData(i) * self.w[i])
+
+        T1 = 0.
+        T2 = 0.
+
+        for i in range(len(self.w)):
+            T1 += (self.teams[0].GetData(i) * self.w[i])
+            T2 += (self.teams[1].GetData(i) * self.w[i])
+
+        Score = (T2 - T1)
 
         if Score > 0:
             # print(self.teams[0].GetName())
