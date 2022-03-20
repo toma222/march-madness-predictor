@@ -50,6 +50,7 @@ if __name__ == '__main__':
     WinningWeights = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
 
     BestEval = 0.
+    BestWeight = []
 
     while Fitness < .98:
 
@@ -63,8 +64,6 @@ if __name__ == '__main__':
         HailMaryAi = None
         HailMaryList = []
         TopCorrect = 0
-
-        BestWeight = []
 
         for i in En.Combos:
             # parse the string to an array of numbers and send it into a half baked AI
@@ -133,7 +132,7 @@ if __name__ == '__main__':
         if TopCorrect == 5:
             keep = AiKeepers[round(random() * len(AiKeepers))]
         else:
-            if len(HailMaryList) != 1:
+            if len(HailMaryList) != 1 or len(HailMaryList) != 0:
                 keep = HailMaryList[round(random() * len(HailMaryList))]
             else:
                 keep = HailMaryAi
