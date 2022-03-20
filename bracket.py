@@ -11,10 +11,9 @@ class Games:
 
 
 class Team:
-    def __init__(self, name, data, SD):
+    def __init__(self, name, data):
         self.name = name
         self.data = data
-        self.ScoreDif = SD
 
     def GetData(self, i):
         return self.data[i]

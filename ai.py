@@ -7,12 +7,11 @@ class GameProfile:
         addArray = []
 
         for i in range(len(weights)):
-            addArray.append(weights[i] + float(AddWeights[i]))
+            addArray.append(round(weights[i] + float(AddWeights[i])))
 
         self.w = addArray
 
         self.slr = 0.  # FINAL RESULT YEEEAAAA
-        self.Score = 0.
 
         self.teams = teams
 
