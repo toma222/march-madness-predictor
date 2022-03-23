@@ -1,10 +1,5 @@
-# Python 3 program to print all
-# possible strings of length k
 
-# The method that prints all
-# possible strings of length k.
-# It is mainly a wrapper over
-# recursive function printAllKLengthRec()
+# Thanks to geeks for geeks who helped me write this code!
 
 import numpy
 
