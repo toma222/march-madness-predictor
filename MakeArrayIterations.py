@@ -40,17 +40,3 @@ class Enum:
             # we have added a new character
             self.printAllKLengthRec(set, newPrefix, n, k - 1)
 
-
-# Driver Code
-if __name__ == "__main__":
-
-    print("First Test")
-    set1 = ['.1', '-.1', '0']
-    set2 = ['2', '2', '2']
-    k = 11
-    En = Enum()  # .printAllKLength(['0.1', '-.1', '0'], 11)
-    En.printAllKLength(['1', '2', '3'], 3)
-
-    print(numpy.add(set1, set2))
-    print(En.num)
-    print(En.Combos[0])
