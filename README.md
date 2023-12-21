@@ -3,6 +3,8 @@
 ## Future toma222 here!
 This is a really bad code base and is not AI. However, I like seeing my past self be exited, and also python is nice to have in the porfolio. Is it good python, no. But it is python; And it runs on my machine :3
 
+(I was also really bad at spelling)
+
 ## Discription
 #### this is not the most clean code base I have writen becauase it was a 2 day challenge with only one help card from google.
 I have always wanted to make an AI and with march madness coming up, or happening depending on when you read this, I though that this was the
